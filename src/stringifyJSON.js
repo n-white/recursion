@@ -4,5 +4,12 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-  // your code goes here
+  
+  		if (obj.length === 1) {
+  			return obj.shift().toString() + "]"
+  		} else {
+  			return obj.shift().toString() + "," + stringifyJSON(obj.slice(0))
+  		};
+  	
+
 };
