@@ -30,5 +30,7 @@ var stringifyJSON = function(obj) {
   		return objFunc(obj);
   	} else if (typeof obj == 'string') {
   		return strFunc(obj)
+  	} else {
+  		return obj.toString();
   	}
 };
