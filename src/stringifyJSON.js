@@ -5,11 +5,18 @@
 
 var stringifyJSON = function(obj) {
   
-  		if (obj.length === 1) {
+	var alreadyCalled = false;
+	var result
+	
+	arrayFunc = function() {
+
+		if (obj.length === 1) {
   			return obj.shift().toString() + "]"
   		} else {
-  			return obj.shift().toString() + "," + stringifyJSON(obj.slice(0))
+  			return obj.shift().toString() + "," + stringifyJSON(obj.slice())
   		};
+	};
   	
+  	return arrayFunc();
 
 };
