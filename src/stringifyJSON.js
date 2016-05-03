@@ -5,18 +5,30 @@
 
 var stringifyJSON = function(obj) {
   
-	var alreadyCalled = false;
-	var result
-	
-	arrayFunc = function() {
 
-		if (obj.length === 1) {
-  			return obj.shift().toString() + "]"
-  		} else {
-  			return obj.shift().toString() + "," + stringifyJSON(obj.slice())
-  		};
+	arrayFunc = function(item) {
+
+  		return "[" + item.toString() + "]"
+  		
 	};
-  	
-  	return arrayFunc();
-
+	
+	objFunc = function(item) {
+		var result = "{"
+		for(key in item) {
+			result += '"' + key.toString() + '"' + ":" + item[key].toString();
+		};
+		return result + "}";
+	}
+	
+	stringFunc = function(item) {
+		return '"' + item + '"';
+	}
+	
+  	if(Array.isArray(obj)) {
+	  	return arrayFunc(obj);
+  	} else if (typeof obj == 'object') {
+  		return objFunc(obj);
+  	} else if (typeof obj == 'string') {
+  		return strFunc(obj)
+  	}
 };
