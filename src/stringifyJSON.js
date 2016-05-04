@@ -28,20 +28,23 @@ map = function(collection, iterator) {
 
 
 var stringifyJSON = function(obj) {
-	if(typeof obj == undefined) {
-		return null;
+	if(obj == undefined) {
+		return 'null';
 	}
 	if(typeof obj == 'string') {
 		return '"' + obj + '"';
 	}
 	if(typeof obj == 'boolean') {
-		return obj;
+		return obj.toString();
 	}
 	if(typeof obj == 'number') {
-		return "'" + obj "'";
+		return obj.toString();
 	}
 	if(Array.isArray(obj)) {
 		return "[" + map(obj, function(item) {return stringifyJSON(item)} ).join(",") + "]"
+	}
+	if(typeof obj == 'object') {
+		return '{}'
 	}
 	
 }
