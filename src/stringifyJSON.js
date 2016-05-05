@@ -28,7 +28,10 @@ map = function(collection, iterator) {
 
 
 var stringifyJSON = function(obj) {
-	if(obj == undefined) {
+	if(obj == 'functions' || obj == 'function') {
+		return 'null';
+	}
+	if(obj == undefined || obj == 'undefined') {
 		return 'null';
 	}
 	if(typeof obj == 'string') {
@@ -45,7 +48,13 @@ var stringifyJSON = function(obj) {
 	}
 	if(typeof obj == 'object') {
 		var result = []
-		each(obj, function(value, key) {return result.push(stringifyJSON(key) + ":" + stringifyJSON(value))})
+		each(obj, function(value, key) {
+			if(stringifyJSON(key) == 'null') {
+				return;
+			} else {
+				return result.push(stringifyJSON(key) + ":" + stringifyJSON(value))
+			}
+		});
 		return "{" + result.join(",") + "}";
 	}
 	
