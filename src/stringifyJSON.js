@@ -44,7 +44,9 @@ var stringifyJSON = function(obj) {
 		return "[" + map(obj, function(item) {return stringifyJSON(item)} ).join(",") + "]"
 	}
 	if(typeof obj == 'object') {
-		return '{}'
+		var result = []
+		each(obj, function(value, key) {return result.push(stringifyJSON(key) + ":" + stringifyJSON(value))})
+		return "{" + result.join(",") + "}";
 	}
 	
 }
