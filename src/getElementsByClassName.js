@@ -11,13 +11,20 @@ var getElementsByClassName = function(className) {
   var elementList = [];
   function helperFunction(element) {
 
-    //Setup helper function to call traverse the DOM and collect each element with className
-    //Helper function will call itself recursively
+    //Setup helper function to recursively traverse the DOM and collect each element that contains the className
+
+    //Part 1: Add code to run through the childNodes and run the helperFunction on each childNode
+    
+    for(var i = 0; i < element.childNodes.length; i++) {
+      helperFunction(element.childNodes[i])
+    }
+
+    //Part 2: Code to run through each element of the childNodes and push to the elementList if the element contains the className
 
     if(contains(element.classList, className)) {
-      elementList.push(element.classList)
+      elementList.push(element)
     }
-        
+
   }
   helperFunction(document.body);
   return elementList;
