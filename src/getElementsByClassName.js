@@ -16,18 +16,20 @@ var getElementsByClassName = function(className) {
     //Part 1: Code to run through each element of the childNodes and push to the elementList if the element contains the className
 
     if(contains(element.classList, className)) {
-      elementList.push(element.classList)
+      elementList.push(element)
     }
 
     //Part 2: Add code to run through the childNodes and run the helperFunction on each childNode
-    
+   
     for(var i = 0; i < element.childNodes.length; i++) {
       helperFunction(element.childNodes[i])
     }
 
   }
+
   helperFunction(document.body);
   return elementList;
+
 };
 
 
