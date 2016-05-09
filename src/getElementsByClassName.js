@@ -9,6 +9,7 @@ var getElementsByClassName = function(className) {
   // your code here
 
   var elementList = [];
+  function helperFunction(element) {
 
     //Setup helper function to recursively traverse the DOM and collect each element that contains the className
 
@@ -21,11 +22,12 @@ var getElementsByClassName = function(className) {
     //Part 2: Add code to run through the childNodes and run the helperFunction on each childNode
    
     for(var i = 0; i < element.childNodes.length; i++) {
-      getElementsByClassName(element.childNodes[i])
+      helperFunction(element.childNodes[i])
     }
 
   }
 
+  helperFunction(document.body);
   return elementList;
 
 };
