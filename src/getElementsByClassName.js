@@ -14,16 +14,10 @@ var getElementsByClassName = function(className) {
     //Setup helper function to call traverse the DOM and collect each element with className
     //Helper function will call itself recursively
 
-    var elementClasses = element.classList
-    var found = false;
-    for(var i = 0; i < elementClasses.length; i++) {
-      if(elementClasses[i] == className) {
-        found = true;
-      };
-    };
-    if(found == true) {
-      elementList.push(elementClasses)  
+    if(contains(element.classList, className)) {
+      elementList.push(element.classList)
     }
+    
     
 
 
@@ -34,5 +28,4 @@ var getElementsByClassName = function(className) {
 
 
 };
-
 
